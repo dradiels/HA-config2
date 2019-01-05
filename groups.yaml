@@ -17,3 +17,12 @@
       - binary_sensor.Badtunna_filter
       - binary_sensor.Badtunna_vvx
       - switch.Keep_pool_warm
+  larm:
+    name: Larm
+    view: true
+    entities:
+      - switch.visonic_alarm_panel
+      - sensor.front_door_open
+      - sensor.conservatory_activity
+      - sensor.basement.activity
+      - alarm_control_panel.visonic_alarm
