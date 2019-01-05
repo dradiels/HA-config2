@@ -1,0 +1,217 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 57.654864966068295
+  longitude: 11.99278482508837
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 70
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Stockholm
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+ios:
+
+tradfri:
+  host: 10.0.198.4
+  allow_tradfri_groups: true
+
+telegram_bot:
+  - platform: polling
+    api_key: 775072004:AAGMK8wlUeULEeB43rPHHDmLL0lglrx20vM
+    allowed_chat_ids:
+      - 661583528
+
+notify:
+  - name: telegram_test
+    platform: telegram
+    chat_id: 661583528
+
+
+visonic:
+  device:
+    type: usb
+    path: '/dev/ttyUSB0'
+  motion_off: 120
+  language: 'EN'
+  force_standard: 'no'
+  sync_time: 'yes'
+  allow_remote_arm: 'yes'
+  allow_remote_disarm: 'no'
+  override_code: !secret larm_kod
+
+mqtt:
+  broker: 10.0.198.6
+  username: mospi
+  password: !secret mqtt_password
+
+sensor:
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/LVVP_IN/TEMP'
+    name: 'LVVP In'
+    unit_of_measurement: '°C'
+    value_template: '{{value|round(1)}}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/LVVP_OUT/TEMP'
+    name: 'LVVP Out'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1)}}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/TANK_UPP/TEMP'
+    name: 'Tank uppe'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/TANK_NER/TEMP'
+    name: 'Tank nere'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/FRAM/TEMP'
+    name: 'Framledning'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/RETUR/TEMP'
+    name: 'Retur'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/ROOM/TEMP'
+    name: 'Tank VVX'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/UTE/TEMP'
+    name: 'Ute vid badtunna'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/POOL/TEMP'
+    name: 'Badtunna'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/SOL/TEMP'
+    name: 'Solfangare'
+    unit_of_measurement: °C
+    value_template: '{{value|round(1) }}'
+  - platform: mqtt
+    state_topic: 'home/heater/sensors/FILTER_TIME/TIME'
+    name: 'Filter Timer'
+    unit_of_measurement: min
+    value_template: '{{value|round(1) }}'
+  - platform: yr
+  - platform: template
+    sensors:
+      front_door_open:
+        friendly_name: "Front door"
+        value_template: "{{ state_attr('sensor.visonic_z02', 'device_tripped') }}"
+      conservatory_activity:
+        friendly_name: "Conservatory"
+        value_template: "{{ state_attr('sensor.visonic_z01', 'device_tripped') }}"
+      basement_activity:
+        friendly_name: "Basement"
+        value_template: "{{ state_attr('sensor.visonic_z03', 'device_tripped') }}"
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: 'home/heater/notifiers/POOL/UPDATE_STATUS'
+    name: 'Badtunna uppvarmning'
+  - platform: mqtt
+    state_topic: 'home/heater/notifiers/FILTER/UPDATE_STATUS'
+    name: 'Badtunna filter'
+  - platform: mqtt
+    state_topic: 'home/heater/notifiers/VVX/UPDATE_STATUS'
+    name: 'Badtunna VVX'
+
+#homekit:
+
+switch:
+  - platform: mqtt
+    name: 'Keep pool warm'
+    command_topic: 'home/heater/notifiers/POOL/SET_STATUS'
+    state_topic: 'home/heater/notifiers/POOL/UPDATE_STATUS'
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    retain: true
+  - platform: tellstick
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+logger:
+  default: critical
+  logs:
+    custom_components.visonic: debug
+    custom_components.alarm_control_panel.visonic: debug
+    custom_components.sensor.visonic: debug
+    custom_components.pyvisonic: debug
+
+# influx
+#influxdb:
+#  host: 127.0.0.1
+
+# Weather prediction
+# sensor:
+#  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Grafana
+panel_iframe:
+  grafana:
+    title: 'Stats'
+    icon: mdi:elevation-rise
+    url: 'http://hassbian.local:3000/dashboard/db/try'
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

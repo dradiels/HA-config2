@@ -1,0 +1,98 @@
+
+  - id: 'telegram_frontdoor_open'
+    alias: 'Telegram bot to notify on door open'
+    trigger:
+      platform: state
+      entity_id: sensor.front_door_open
+      from: 'No'
+      to: 'Yes'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Front door open
+  - id: 'telegram_frontdoor_close'
+    alias: 'Telegram bot to notify on door close'
+    trigger:
+      platform: state
+      entity_id: sensor.front_door_open
+      from: 'Yes'
+      to: 'No'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Front door closed
+  - id: 'telegram_conservatory_open'
+    alias: 'Telegram bot to notify on conservatory'
+    trigger:
+      platform: state
+      entity_id: sensor.conservatory_activity
+      from: 'No'
+      to: 'Yes'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Conservatory open
+  - id: 'telegram_conservatory_close'
+    alias: 'Telegram bot to notify on conservatory close'
+    trigger:
+      platform: state
+      entity_id: sensor.conservatory_activity
+      from: 'Yes'
+      to: 'No'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Conservatory closed
+  - id: 'telegram_basement_open'
+    alias: 'Telegram bot to notify on basement open'
+    trigger:
+      platform: state
+      entity_id: sensor.basement_activity
+      from: 'No'
+      to: 'Yes'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Basement open
+  - id: 'telegram_basement_close'
+    alias: 'Telegram bot to notify on basement close'
+    trigger:
+      platform: state
+      entity_id: sensor.basement_activity
+      from: 'Yes'
+      to: 'No'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Basement closed
+
+  - id: 'telegram_alarm_av'
+    alias: 'Telegram bot to notify on disarm'
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.visonic_alarm
+      to: 'disarmed'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Avlarmat hemma
+  - id: 'telegram_alarm_pa'
+    alias: 'Telegram bot to notify on armed'
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.visonic_alarm
+      to: 'armed_away'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Larmat hemma
+  - id: 'telegram_boot'
+    alias: 'Telegram bot to notify on boot'
+    trigger:
+      platform: homeassistant
+      event: start
+    condition: []
+    action:
+      service: notify.telegram_test
+      data:
+        message: Home Assistant on Pi booted
