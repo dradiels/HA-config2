@@ -2,11 +2,11 @@
   rgb_on_red:
     alias: Turn on a given selection of lights, saving current state
     sequence:
-      - data:
+    - data:
         store_name: flash_store
         entity_id: light.rgb
       service: python_script.light_store
-      - data:
+    - data:
         entity_id: light.rgb
         brightness: 151
         rgb_color:
@@ -17,7 +17,7 @@
   rgb_restore:
     alias: Restore saved lights to the way they were
     sequence:
-      - service: python_script.light_store
-        - data:
-           store_name: flash_store
-           operation: restore
+    - service: python_script.light_store
+      - data:
+          store_name: flash_store
+          operation: restore
