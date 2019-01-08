@@ -5,15 +5,15 @@
       - service: python_script.light_store
         data:
           store_name: flash_store
-          entity_id:
-            - light.rgb
+          entity_id: light.rgb
       - service: light.turn_on
         data:
-          entity_id: light_rgb
+          entity_id: light.rgb
           brightness: 151
           xy_color: 0.701,0.299
           hs_color: 360,100
           rgb_color: 255,0,0
+
   rgb_restore:
     alias: Restore saved lights to the way they were
     sequence:
