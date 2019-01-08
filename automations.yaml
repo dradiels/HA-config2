@@ -7,9 +7,10 @@
       from: 'No'
       to: 'Yes'
     action:
-      service: notify.telegram_test
-      data:
-        message: Front door open
+      - service: notify.telegram_test
+        data:
+          message: Front door open
+      - service: script.rgb_on_red
   - id: 'telegram_frontdoor_close'
     alias: 'Telegram bot to notify on door close'
     trigger:
@@ -18,9 +19,10 @@
       from: 'Yes'
       to: 'No'
     action:
-      service: notify.telegram_test
-      data:
-        message: Front door closed
+      - service: notify.telegram_test
+        data:
+          message: Front door closed
+      - service: script.rgb_restore
   - id: 'telegram_conservatory_open'
     alias: 'Telegram bot to notify on conservatory'
     trigger:
