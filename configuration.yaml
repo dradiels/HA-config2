@@ -168,6 +168,10 @@ switch:
     payload_off: 'OFF'
     retain: true
   - platform: tellstick
+  - platform: broadlink
+    host: 10.0.198.7
+    mac: 34:AE:34:6F:A1:06
+
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
