@@ -26,3 +26,21 @@
       - sensor.conservatory_activity
       - sensor.basement_activity
       - alarm_control_panel.visonic_alarm
+  media:
+    name: Media
+    view: true
+    entities:
+      - media_player.the_amp
+      - media_player.moc_tv2_2
+  vardagsrum1:
+    name: TV rum
+    view: true
+    entities:
+      - light.tvrum
+      - light.alex_1
+      - light.alex_2
+      - light.brollop
+      - light.kort
+      - light.hearts
+      - light.champion
+      - light.rgb
