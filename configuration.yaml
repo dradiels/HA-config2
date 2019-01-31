@@ -134,17 +134,6 @@ sensor:
     unit_of_measurement: min
     value_template: '{{value|round(1) }}'
   - platform: yr
-  - platform: template
-    sensors:
-      front_door_open:
-        friendly_name: "Front door"
-        value_template: "{{ state_attr('sensor.visonic_z02', 'device_tripped') }}"
-      conservatory_activity:
-        friendly_name: "Conservatory"
-        value_template: "{{ state_attr('sensor.visonic_z01', 'device_tripped') }}"
-      basement_activity:
-        friendly_name: "Basement"
-        value_template: "{{ state_attr('sensor.visonic_z03', 'device_tripped') }}"
 
 binary_sensor:
   - platform: mqtt
@@ -156,6 +145,17 @@ binary_sensor:
   - platform: mqtt
     state_topic: 'home/heater/notifiers/VVX/UPDATE_STATUS'
     name: 'Badtunna VVX'
+  - platform: template
+    sensors:
+      front_door_open:
+        friendly_name: "Front door"
+        value_template: "{{ is_state('binary_sensor.visonic_z02', 'on') }}"
+      conservatory_activity:
+        friendly_name: "Conservatory"
+        value_template: "{{ is_state('binary_sensor.visonic_z01', 'on') }}"
+      basement_activity:
+        friendly_name: "Basement"
+        value_template: "{{ is_state('binary_sensor.visonic_z03', 'on') }}"
 
 #homekit:
 
