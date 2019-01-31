@@ -3,9 +3,9 @@
     alias: 'Telegram bot to notify on door open'
     trigger:
       platform: state
-      entity_id: sensor.front_door_open
-      from: 'No'
-      to: 'Yes'
+      entity_id: binary_sensor.front_door_open
+      from: 'off'
+      to: 'on'
     action:
       - service: notify.telegram_test
         data:
@@ -15,9 +15,9 @@
     alias: 'Telegram bot to notify on door close'
     trigger:
       platform: state
-      entity_id: sensor.front_door_open
-      from: 'Yes'
-      to: 'No'
+      entity_id: binary_sensor.front_door_open
+      from: 'on'
+      to: 'off'
     action:
       - service: notify.telegram_test
         data:
@@ -27,9 +27,9 @@
     alias: 'Telegram bot to notify on conservatory'
     trigger:
       platform: state
-      entity_id: sensor.conservatory_activity
-      from: 'No'
-      to: 'Yes'
+      entity_id: binary_sensor.conservatory_activity
+      from: 'off'
+      to: 'on'
     action:
       service: notify.telegram_test
       data:
@@ -38,9 +38,9 @@
     alias: 'Telegram bot to notify on conservatory close'
     trigger:
       platform: state
-      entity_id: sensor.conservatory_activity
-      from: 'Yes'
-      to: 'No'
+      entity_id: binary_sensor.conservatory_activity
+      from: 'on'
+      to: 'off'
     action:
       service: notify.telegram_test
       data:
@@ -49,9 +49,9 @@
     alias: 'Telegram bot to notify on basement open'
     trigger:
       platform: state
-      entity_id: sensor.basement_activity
-      from: 'No'
-      to: 'Yes'
+      entity_id: binary_sensor.basement_activity
+      from: 'off'
+      to: 'on'
     action:
       service: notify.telegram_test
       data:
@@ -60,9 +60,9 @@
     alias: 'Telegram bot to notify on basement close'
     trigger:
       platform: state
-      entity_id: sensor.basement_activity
-      from: 'Yes'
-      to: 'No'
+      entity_id: binary_sensor.basement_activity
+      from: 'on'
+      to: 'off'
     action:
       service: notify.telegram_test
       data:
