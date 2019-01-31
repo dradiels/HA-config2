@@ -77,7 +77,7 @@
     action:
       service: notify.telegram_test
       data:
-        message: Avlarmat hemma
+        message: Avlarmat
   - id: 'telegram_alarm_pa'
     alias: 'Telegram bot to notify on armed'
     trigger:
@@ -87,7 +87,17 @@
     action:
       service: notify.telegram_test
       data:
-        message: Larmat hemma
+        message: Larmat Bortaläge
+  - id: 'telegram_alarm_pa_hemma'
+    alias: 'Telegram bot to notify on armed at home'
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.visonic_alarm
+      to: 'armed_home'
+    action:
+      service: notify.telegram_test
+      data:
+        message: Larmat Hemmaläge
   - id: 'telegram_boot'
     alias: 'Telegram bot to notify on boot'
     trigger:
