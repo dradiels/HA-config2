@@ -45,6 +45,14 @@ updater:
 # Discover some devices automatically
 discovery:
 
+google_assistant:
+  project_id: starlit-tangent-230518
+#  api_key:
+  exposed_domains:
+    - switch
+    - light
+    - group
+
 ios:
 
 tradfri:
