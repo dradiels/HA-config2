@@ -47,7 +47,7 @@ discovery:
 
 google_assistant:
   project_id: starlit-tangent-230518
-#  api_key:
+  api_key: AIzaSyAdrhjn1qodRSFnkPLzLZFpoEqLTB4rpLs
   exposed_domains:
     - switch
     - light
