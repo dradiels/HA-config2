@@ -29,7 +29,7 @@ http:
   api_password: !secret http_password
   ssl_certificate: /etc/letsencrypt/live/adiels.duckdns.org/fullchain.pem
   ssl_key: /etc/letsencrypt/live/adiels.duckdns.org/privkey.pem
-  
+
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
@@ -145,6 +145,11 @@ sensor:
     unit_of_measurement: min
     value_template: '{{value|round(1) }}'
   - platform: yr
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: "ssl-cert-check -b -c /etc/letsencrypt/live/examplehome.duckdns.org/cert.pem | awk '{ print $NF }'"
 
 binary_sensor:
   - platform: mqtt
