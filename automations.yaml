@@ -23,6 +23,30 @@
         data:
           message: Front door closed
       - service: script.rgb_restore
+  - id: 'telegram_backdoor_open'
+    alias: 'Telegram bot to notify on back door open'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.back_door_open
+      from: 'off'
+      to: 'on'
+    action:
+      - service: notify.telegram_test
+        data:
+          message: Back door open
+      - service: script.rgb_on_red
+  - id: 'telegram_backdoor_close'
+    alias: 'Telegram bot to notify on back door close'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.back_door_open
+      from: 'on'
+      to: 'off'
+    action:
+      - service: notify.telegram_test
+        data:
+          message: Back door closed
+      - service: script.rgb_restore
   - id: 'telegram_conservatory_open'
     alias: 'Telegram bot to notify on conservatory'
     trigger:
