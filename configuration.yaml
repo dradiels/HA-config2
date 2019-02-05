@@ -198,6 +198,18 @@ media_player:
     mac: 34:AE:34:6F:A1:06
     ircodes_ini: 'broadlink_media_codes/the_amp.ini'
 
+light:
+  - platform: group
+    name: Skena över soffa
+    entities:
+      - light.alex_1
+      - light.alex_2
+      - light.brollop
+      - light.soffbord
+      - light.kort
+      - light.champion
+      - light.hearts
+
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
