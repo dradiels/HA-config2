@@ -210,13 +210,13 @@ light:
       - light.kort
       - light.champion
       - light.hearts
-- platform: group
-  name: Skena i finrum
-  entities:
-    - light.doskalle
-    - light.klimt
-    - light.rundabordet
-    - light.klasen
+  - platform: group
+    name: Skena i finrum
+    entities:
+      - light.doskalle
+      - light.klimt
+      - light.rundabordet
+      - light.klasen
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
