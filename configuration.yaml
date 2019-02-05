@@ -52,12 +52,13 @@ google_assistant:
     - switch
     - light
     - group
+    - sensor
 
 ios:
 
 tradfri:
   host: 10.0.198.4
-  allow_tradfri_groups: true
+  allow_tradfri_groups: false
 
 telegram_bot:
   - platform: polling
@@ -209,6 +210,13 @@ light:
       - light.kort
       - light.champion
       - light.hearts
+- platform: group
+  name: Skena i finrum
+  entities:
+    - light.doskalle
+    - light.klimt
+    - light.rundabordet
+    - light.klasen
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
