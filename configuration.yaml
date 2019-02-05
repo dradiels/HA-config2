@@ -154,33 +154,33 @@ sensor:
 binary_sensor:
   - platform: mqtt
     state_topic: 'home/heater/notifiers/POOL/UPDATE_STATUS'
-    name: 'Badtunna uppvarmning'
+    name: 'Badtunna uppvärmning'
   - platform: mqtt
     state_topic: 'home/heater/notifiers/FILTER/UPDATE_STATUS'
     name: 'Badtunna filter'
   - platform: mqtt
     state_topic: 'home/heater/notifiers/VVX/UPDATE_STATUS'
-    name: 'Badtunna VVX'
+    name: 'Badtunna värmeväxlare'
   - platform: template
     sensors:
       front_door_open:
-        friendly_name: "Front door"
+        friendly_name: "Entredörren"
         value_template: "{{ is_state('binary_sensor.visonic_z02', 'on') }}"
       conservatory_activity:
-        friendly_name: "Conservatory"
+        friendly_name: "Uterumet"
         value_template: "{{ is_state('binary_sensor.visonic_z01', 'on') }}"
       basement_activity:
-        friendly_name: "Basement"
+        friendly_name: "Källaren"
         value_template: "{{ is_state('binary_sensor.visonic_z03', 'on') }}"
       back_door_open:
-        friendly_name: "Back door"
+        friendly_name: "Altandörren"
         value_template: "{{ is_state('binary_sensor.visonic_z04', 'on') }}"
 
 #homekit:
 
 switch:
   - platform: mqtt
-    name: 'Keep pool warm'
+    name: 'Värm badtunnan'
     command_topic: 'home/heater/notifiers/POOL/SET_STATUS'
     state_topic: 'home/heater/notifiers/POOL/UPDATE_STATUS'
     payload_on: 'ON'
