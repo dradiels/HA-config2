@@ -142,3 +142,10 @@
       service: notify.telegram_test
       data:
         message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
+  - id: 'extended_away_automation'
+    alias: Extended away
+    action:
+    - service: input_select.select_option
+      entity_id: input_select.house_mode
+      data:
+        option: 'Extended Away'        
