@@ -188,7 +188,7 @@ binary_sensor:
         value_template: "{{ is_state('sun.sun', 'below_horizon') }}"
         friendly_name: "Dark Outside"
 
-input_selects:
+input_select:
   house_mode:
       name: Mode
       options:
