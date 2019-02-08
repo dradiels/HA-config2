@@ -158,12 +158,15 @@ binary_sensor:
   - platform: mqtt
     state_topic: 'home/heater/notifiers/POOL/UPDATE_STATUS'
     name: 'Badtunna uppvärmning'
+    device_class: power
   - platform: mqtt
     state_topic: 'home/heater/notifiers/FILTER/UPDATE_STATUS'
     name: 'Badtunna filter'
+    device_class: power
   - platform: mqtt
     state_topic: 'home/heater/notifiers/VVX/UPDATE_STATUS'
     name: 'Badtunna värmeväxlare'
+    device_class: power
   - platform: template
     sensors:
       front_door_open:
