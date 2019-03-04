@@ -4,10 +4,10 @@
     sequence:
     - data:
         store_name: flash_store
-        entity_id: light.rgb
+        entity_id: light.panton
       service: python_script.light_store
     - data:
-        entity_id: light.rgb
+        entity_id: light.panton
         brightness: 151
         rgb_color:
         - 255
@@ -74,7 +74,7 @@
       # turn on bedroom.
       - wait_template: "{{ states('sensor.time') == (state_attr('input_datetime.mockupancy_bedtime' , 'timestamp')|int|timestamp_custom('%H:%M', False)) }}"
       - service: homeassistant.turn_on
-        entity_id: light.pyssel
+        entity_id: light.skapet
       - delay: "00:00:{{ (range(15, 59)|random|int) }}"
       - service: homeassistant.turn_off
         entity_id: light.skena_over_soffa
@@ -83,15 +83,15 @@
         entity_id: light.skena_i_finrum
       - delay: "00:00{{ (range(20, 30)|random|int) }}"
       - service: homeassistant.turn_on
-        entity_id: light.garderob
+        entity_id: light.garderoben
         data:
           brightness: 80
       - delay: "00:{{ (range(2, 15)|random|int) }}:00"
       - service: homeassistant.turn_off
-        entity_id: light.pyssel
+        entity_id: light.skapet
       - delay: "00:{{ (range(15, 59)|random|int) }}:00"
       - service: homeassistant.turn_off
-        entity_id: light.garderob
+        entity_id: light.garderoben
 
   #    # After a random time between 15 minutes and an hour, turn off the lights
   #    - delay: "00:{{ (range(15, 30)|random|int) }}:00"
@@ -135,14 +135,14 @@
       # Wait a random nmber of minutes between 15 and 90 and switch on
       - delay: "00:{{ (range(15, 90)|random|int) }}:00"
       - service: homeassistant.turn_on
-        entity_id: light.garderob
+        entity_id: light.garderoben
         data:
           brightness: 100
 
       # Wait for between 3 minutes and 9 minutes and switch off
       - delay: "00:{{ (range(3, 9)|random|int) }}:00"
       - service: homeassistant.turn_off
-        entity_id: light.garderob
+        entity_id: light.garderoben
 
       # Loop the script for next time.
       - service: script.random_sovrum_loop
@@ -158,14 +158,14 @@
       # Wait a random nmber of minutes between 15 and 90 and switch on
       - delay: "00:{{ (range(15, 90)|random|int) }}:00"
       - service: homeassistant.turn_on
-        entity_id: light.kok
+        entity_id: light.koksbordet
         data:
           brightness: 100
 
       # Wait for between 3 minutes and 9 minutes and switch off
       - delay: "00:{{ (range(3, 9)|random|int) }}:00"
       - service: homeassistant.turn_off
-        entity_id: light.kok
+        entity_id: light.koksbordet
 
       # Loop the script for next time.
       - service: script.random_kok_loop
