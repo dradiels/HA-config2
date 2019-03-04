@@ -58,9 +58,9 @@ google_assistant:
 
 ios:
 
-tradfri:
-  host: 10.0.198.56
-  allow_tradfri_groups: false
+#tradfri:
+#  host: 10.0.198.56
+#  allow_tradfri_groups: false
 
 telegram_bot:
   - platform: polling
