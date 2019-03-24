@@ -167,6 +167,14 @@ binary_sensor:
     state_topic: 'home/heater/notifiers/VVX/UPDATE_STATUS'
     name: 'Badtunna värmeväxlare'
     device_class: power
+  - platform: mqtt
+    state_topic: 'home/heater/notifiers/SOL/UPDATE_STATUS'
+    name: 'Solfångare pump'
+    device_class: power
+  - platform: mqtt
+    state_topic: 'home/heater/notifiers/SHUNT/UPDATE_STATUS'
+    name: 'Shunt sänkning'
+    device_class: power    
   - platform: template
     sensors:
       front_door_open:
