@@ -147,6 +147,10 @@ sensor:
     name: 'Filter Timer'
     unit_of_measurement: min
     value_template: '{{value|round(1) }}'
+  - platform: template
+    name: Solfangare_start_temp
+    unit_of_measurement: °C
+    value_template: '{{ ((sensor.tank_uppe|float)+(sensor.tank_nere|float))/2|rounf(1)}}'
   - platform: yr
   - platform: command_line
     name: SSL cert expiry
@@ -174,7 +178,7 @@ binary_sensor:
   - platform: mqtt
     state_topic: 'home/heater/notifiers/SHUNT/UPDATE_STATUS'
     name: 'Shunt sänkning'
-    device_class: power    
+    device_class: power
   - platform: template
     sensors:
       front_door_open:
