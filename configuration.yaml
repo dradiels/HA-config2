@@ -148,9 +148,10 @@ sensor:
     unit_of_measurement: min
     value_template: '{{value|round(1) }}'
   - platform: template
-    name: Solfangare_start_temp
-    unit_of_measurement: °C
-    value_template: '{{ ((sensor.tank_uppe+sensor.tank_nere)/2)|round(1)}}'
+    sensors:
+      Solfangare_start_temp:
+        unit_of_measurement: °C
+        value_template: '{{ ((sensor.tank_uppe+sensor.tank_nere)/2)|round(1)}}'
   - platform: yr
   - platform: command_line
     name: SSL cert expiry
