@@ -149,7 +149,7 @@ sensor:
     value_template: '{{value|round(1) }}'
   - platform: template
     sensors:
-      Solfangare_start_temp:
+      solfangare_start_temp:
         unit_of_measurement: °C
         value_template: '{{ ((sensor.tank_uppe+sensor.tank_nere)/2)|round(1)}}'
   - platform: yr
