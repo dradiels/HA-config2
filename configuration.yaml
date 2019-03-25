@@ -150,8 +150,8 @@ sensor:
   - platform: template
     sensors:
       solfangare_start_temp:
-        unit_of_measurement: °C
-        value_template: '{{ (states('sensor.tank_uppe')/2+states('sensor.tank_nere')/2)|round(1) }}'
+        unit_of_measurement: '°C'
+        value_template: "{{ (states('sensor.tank_uppe')/2+states('sensor.tank_nere')/2)|round(1) }}"
   - platform: yr
   - platform: command_line
     name: SSL cert expiry
